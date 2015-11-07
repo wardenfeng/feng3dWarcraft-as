@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="me.feng3d.parsers.W3eParser"/>
+    <classEntry path="me.feng3d.war3.slk.TerrainSlkItem"/>
+    <classEntry path="me.feng3d.war3.slk.War3MapConfig"/>
+    <classEntry path="me.feng3d.war3.map.w3e.W3eData"/>
+    <classEntry path="me.feng3d.war3.map.w3e.W3eTilePoint"/>
+    <classEntry path="me.feng3d.parsers.BlpParser"/>
+    <classEntry path="me.feng3d.war3.blp.BlpData"/>
+    <classEntry path="me.feng3d.entities.War3Terrain"/>
+    <classEntry path="me.feng3d.core.base.subgeometry.War3TerrainSubGeometry"/>
+    <classEntry path="me.feng3d.passes.War3TerrainPass"/>
+    <classEntry path="me.feng3d.materials.War3TerrainMaterial"/>
+    <classEntry path="me.feng3d.entities.War3TerrainTile"/>
+    <classEntry path="me.feng3d.fagal.fragment.F_War3Terrain"/>
+    <classEntry path="me.feng3d.fagal.vertex.V_War3Terrain"/>
+    <classEntry path="me.feng3d.core.buffer.War3Context3DBufferTypeID"/>
+    <classEntry path="me.feng3d.configs.WarContext3DBufferIDConfig"/>
+    <classEntry path="me.feng3d.test.TestBaseWar3Map"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
