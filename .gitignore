@@ -6,6 +6,12 @@ bin/
 bin-debug/
 bin-release/
 
+# 忽略外部项目
+Fagal
+FagalFeng3d
+feng3d
+fengCommon
+
 # Other files and folders
 .settings/
 
