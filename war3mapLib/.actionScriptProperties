@@ -34,11 +34,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="2" path="libs"/>
-      <libraryPathEntry kind="3" linkType="2" path="/feng3d/bin/feng3d.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="2" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="2" path="/fagal/bin/fagal.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="2" path="/fagalFeng3d/bin/fagalFeng3d.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="2" path="/mathLib/bin/mathLib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="2" path="feng3dlibs"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
