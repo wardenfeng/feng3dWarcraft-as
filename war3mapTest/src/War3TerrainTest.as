@@ -160,6 +160,7 @@ package
 			if (terrain)
 				camera.y += 0.2 * (terrain.getHeightAt(camera.x, camera.z) + 500 - camera.y);
 
+			view.render();
 		}
 
 		/**

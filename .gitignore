@@ -6,16 +6,9 @@ bin/
 bin-debug/
 bin-release/
 
-# 忽略外部项目
-Fagal
-FagalFeng3d
-feng3d
-fengCommon
-
 # Other files and folders
 .settings/
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
-/unittest

@@ -33,10 +33,11 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="3" linkType="2" path="/Fagal/bin/Fagal.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="2" path="/FagalFeng3d/bin/FagalFeng3d.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="2" path="/feng3d/bin/feng3d.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="2" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="/fagal/bin/fagal.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="/fagalFeng3d/bin/fagalFeng3d.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="/mathLib/bin/mathLib.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

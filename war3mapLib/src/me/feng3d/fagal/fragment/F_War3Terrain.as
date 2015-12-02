@@ -1,10 +1,11 @@
 package me.feng3d.fagal.fragment
 {
 	import flash.display3D.Context3DProgramType;
-	
+
 	import me.feng3d.core.register.Register;
 	import me.feng3d.core.register.RegisterArray;
 	import me.feng3d.fagal.methods.FagalMethod;
+	import me.feng3d.fagal.params.WarcraftShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -21,9 +22,11 @@ package me.feng3d.fagal.fragment
 		override public function runFunc():void
 		{
 			var _:* = FagalRE.instance.space;
-			
+
+			var warcraftShaderParams:WarcraftShaderParams = shaderParams.getComponent(WarcraftShaderParams.NAME);
+
 			//土壤纹理个数
-			var numSplattingLayers:int = shaderParams.splatNum_war3Terrain;
+			var numSplattingLayers:int = warcraftShaderParams.splatNum_war3Terrain;
 
 			//war3地形贴图u坐标变量数据
 			var uVarying:Register = _.war3TerrainU_v;
@@ -75,3 +78,5 @@ package me.feng3d.fagal.fragment
 		}
 	}
 }
+
+

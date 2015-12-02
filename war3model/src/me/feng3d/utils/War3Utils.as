@@ -3,7 +3,7 @@ package me.feng3d.utils
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
 
-	import me.feng3d.core.math.Quaternion;
+	import me.feng3d.mathlib.Quaternion;
 
 	/**
 	 *
@@ -69,3 +69,5 @@ package me.feng3d.utils
 		}
 	}
 }
+
+

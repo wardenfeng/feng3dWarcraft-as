@@ -55,7 +55,7 @@ package me.feng3d.entities
 
 			var war3TerrainTile:War3TerrainTile;
 
-			var number:int = 1;
+			var number:int = 10;
 
 			var index:int;
 			for (var zi:uint = _segmentsH / 2 - number; zi < _segmentsH / 2 + number; ++zi)

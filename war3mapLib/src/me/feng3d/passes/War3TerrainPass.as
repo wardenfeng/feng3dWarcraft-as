@@ -12,6 +12,7 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.fagal.fragment.F_War3Terrain;
+	import me.feng3d.fagal.params.WarcraftShaderParams;
 	import me.feng3d.fagal.vertex.V_War3Terrain;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
@@ -94,7 +95,9 @@ package me.feng3d.passes
 		{
 			super.activate(camera,target);
 
-			shaderParams.splatNum_war3Terrain = _numSplattingLayers;
+			var warcraftShaderParams:WarcraftShaderParams = shaderParams.getComponentByClass(WarcraftShaderParams);
+
+			warcraftShaderParams.splatNum_war3Terrain = _numSplattingLayers;
 			shaderParams.addSampleFlags(War3Context3DBufferTypeID.WAR3TERRAINTEXTURE_FS_ARRAY, splats[0], Context3DWrapMode.CLAMP);
 		}
 	}

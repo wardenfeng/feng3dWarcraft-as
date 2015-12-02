@@ -2,8 +2,8 @@ package me.feng3d.parsers.mdl
 {
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
-	
-	import me.feng3d.core.math.Quaternion;
+
+	import me.feng3d.mathlib.Quaternion;
 	import me.feng3d.utils.War3Utils;
 
 	/**
@@ -56,3 +56,5 @@ package me.feng3d.parsers.mdl
 		}
 	}
 }
+
+

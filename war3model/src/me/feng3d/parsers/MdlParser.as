@@ -2,8 +2,8 @@ package me.feng3d.parsers
 {
 	import flash.geom.Point;
 	import flash.geom.Vector3D;
-	
-	import me.feng3d.core.math.Quaternion;
+
+	import me.feng3d.mathlib.Quaternion;
 	import me.feng3d.parsers.mdl.AnimInfo;
 	import me.feng3d.parsers.mdl.AnimInfo1;
 	import me.feng3d.parsers.mdl.BoneObject;

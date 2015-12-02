@@ -1,6 +1,6 @@
 package me.feng3d.parsers.mdl
 {
-	import me.feng3d.core.math.Quaternion;
+	import me.feng3d.mathlib.Quaternion;
 
 	/**
 	 *
@@ -18,3 +18,5 @@ package me.feng3d.parsers.mdl
 		public var OutTan:Quaternion;
 	}
 }
+
+

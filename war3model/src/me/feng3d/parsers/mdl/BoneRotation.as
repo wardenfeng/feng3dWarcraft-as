@@ -1,8 +1,8 @@
 package me.feng3d.parsers.mdl
 {
 	import flash.utils.Dictionary;
-	
-	import me.feng3d.core.math.Quaternion;
+
+	import me.feng3d.mathlib.Quaternion;
 
 	/**
 	 * 骨骼的角度信息
@@ -87,3 +87,5 @@ package me.feng3d.parsers.mdl
 		}
 	}
 }
+
+

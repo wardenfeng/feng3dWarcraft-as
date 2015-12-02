@@ -1,7 +1,7 @@
 package me.feng3d.animators.war3
 {
 	import flash.geom.Vector3D;
-	
+
 	import me.feng3d.arcane;
 	import me.feng3d.animators.skeleton.SkeletonAnimationSet;
 	import me.feng3d.animators.skeleton.SkeletonAnimator;
@@ -9,7 +9,7 @@ package me.feng3d.animators.war3
 	import me.feng3d.animators.skeleton.data.Skeleton;
 	import me.feng3d.animators.skeleton.data.SkeletonJoint;
 	import me.feng3d.animators.skeleton.data.SkeletonPose;
-	import me.feng3d.core.math.Quaternion;
+	import me.feng3d.mathlib.Quaternion;
 
 	use namespace arcane;
 
@@ -88,3 +88,5 @@ package me.feng3d.animators.war3
 		}
 	}
 }
+
+
