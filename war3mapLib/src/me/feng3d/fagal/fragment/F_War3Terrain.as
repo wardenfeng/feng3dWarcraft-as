@@ -23,7 +23,7 @@ package me.feng3d.fagal.fragment
 		{
 			var _:* = FagalRE.instance.space;
 
-			var warcraftShaderParams:WarcraftShaderParams = shaderParams.getComponent(WarcraftShaderParams.NAME);
+			var warcraftShaderParams:WarcraftShaderParams = shaderParams.getComponentByClass(WarcraftShaderParams);
 
 			//土壤纹理个数
 			var numSplattingLayers:int = warcraftShaderParams.splatNum_war3Terrain;
