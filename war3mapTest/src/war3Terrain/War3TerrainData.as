@@ -9,8 +9,8 @@ package war3Terrain
 	 */
 	public class War3TerrainData extends TaskQueue
 	{
-		public var w3ePreparationItem:W3ePreparationItem;
-		public var war3SmallMapItem:War3SmallMapItem;
+		public var w3ePreparationItem:W3eTaskItem;
+		public var war3SmallMapItem:War3SmallMapTaskItem;
 		public var war3TextureInfo:War3TextureInfo;
 
 		public var configUrl:String;
@@ -24,10 +24,10 @@ package war3Terrain
 		{
 			this.configUrl = configUrl;
 
-			w3ePreparationItem = new W3ePreparationItem(configUrl);
+			w3ePreparationItem = new W3eTaskItem(configUrl);
 			addItem(w3ePreparationItem);
 
-			war3SmallMapItem = new War3SmallMapItem(configUrl);
+			war3SmallMapItem = new War3SmallMapTaskItem(configUrl);
 
 			w3ePreparationItem.addEventListener(TaskEvent.COMPLETED, onW3ePrepared);
 

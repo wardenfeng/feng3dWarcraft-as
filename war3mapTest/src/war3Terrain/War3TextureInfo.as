@@ -38,13 +38,13 @@ package war3Terrain
 		{
 			var tilesetsID:String;
 			var terrainObj:TerrainSlkItem;
-			var war3TextureItem:War3TextureItem;
+			var war3TextureItem:War3TextureTaskItem;
 			for (var i:int = 0; i < tilesetsIDs.length; i++)
 			{
 				tilesetsID = tilesetsIDs[i];
 				terrainObj = war3MapConfig.terrainslkDic[tilesetsID];
 
-				war3TextureItem = new War3TextureItem();
+				war3TextureItem = new War3TextureTaskItem();
 				war3TextureItem.id = tilesetsID;
 				war3TextureItem.url = "assets/war3mpq/" + terrainObj.url + ".blp?version=" + Math.random();
 				trace(war3TextureItem.url);
@@ -55,7 +55,7 @@ package war3Terrain
 
 		override protected function onCompletedItem(event:TaskEvent):void
 		{
-			var war3TextureItem:War3TextureItem = event.target as War3TextureItem;
+			var war3TextureItem:War3TextureTaskItem = event.target as War3TextureTaskItem;
 
 			tileTextures[tilesetsIDs.indexOf(war3TextureItem.id)] = war3TextureItem.bitmapTexture;
 			super.onCompletedItem(event);
