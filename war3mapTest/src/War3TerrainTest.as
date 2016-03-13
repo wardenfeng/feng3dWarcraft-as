@@ -97,7 +97,7 @@ package
 		{
 			addChild(new Bitmap(war3TerrainData.war3TextureInfo.tileTextures[1].bitmapData.clone()));
 
-			terrain = new War3Terrain1(war3TerrainData.w3ePreparationItem.w3eData, war3TerrainData.war3TextureInfo.tileTextures);
+			terrain = new War3Terrain1(war3TerrainData.w3eLoadParseTask.w3eData, war3TerrainData.war3TextureInfo.tileTextures);
 			scene.addChild(terrain);
 		}
 
