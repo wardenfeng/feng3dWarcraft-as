@@ -15,8 +15,6 @@ package war3Terrain.task
 	import me.feng.task.TaskItem;
 	import me.feng3d.events.ParserEvent;
 	import me.feng3d.parsers.BlpParser;
-	import me.feng3d.textures.BitmapTexture;
-	import me.feng3d.utils.Cast;
 
 	/**
 	 *
@@ -29,11 +27,9 @@ package war3Terrain.task
 		public var id:String;
 		public var url:String;
 
-		public var content:ByteArray;
+		private var content:ByteArray;
 
 		public var bitmap:Bitmap;
-
-		public var bitmapTexture:BitmapTexture;
 
 		public function War3TextureTask()
 		{
@@ -74,7 +70,7 @@ package war3Terrain.task
 			var newBmd:BitmapData = new BitmapData(newSize, newSize);
 			newBmd.copyPixels(bitmap.bitmapData, new Rectangle(0, 0, newSize, newSize), new Point());
 
-			bitmapTexture = Cast.bitmapTexture(newBmd);
+			bitmap.bitmapData = newBmd;
 
 			doComplete();
 		}

@@ -20,6 +20,7 @@ package
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
+	import me.feng3d.war3.map.w3e.W3eData;
 
 	import war3Terrain.task.War3TerrainDataTask;
 
@@ -39,8 +40,6 @@ package
 //		private var configUrl:String = "assets/war3map/test/war3map.w3e";
 //		private var configUrl:String = "assets/war3map/BootyBay/war3map.w3e";
 		private var configUrl:String = "assets/war3map/LostTemple/war3map.w3e";
-
-		private var war3TerrainData:War3TerrainDataTask = new War3TerrainDataTask();
 
 		/**
 		 * Constructor
@@ -65,13 +64,18 @@ package
 
 		private function readyTerrainData():void
 		{
-			war3TerrainData.init(configUrl);
-			war3TerrainData.execute();
+			var war3TerrainDataTask:War3TerrainDataTask = new War3TerrainDataTask();
+			war3TerrainDataTask.addEventListener(TaskEvent.COMPLETED, onCompleted);
+			war3TerrainDataTask.init(configUrl);
+			war3TerrainDataTask.execute();
 		}
 
-		private function onPrepared(event:TaskEvent):void
+		private function onCompleted(event:TaskEvent):void
 		{
-			createTerrain0();
+			var war3TerrainDataTask:War3TerrainDataTask = event.currentTarget as War3TerrainDataTask;
+			war3TerrainDataTask.removeEventListener(TaskEvent.COMPLETED, onCompleted);
+
+			createTerrain0(war3TerrainDataTask.w3eLoadParseTask.w3eData, war3TerrainDataTask.war3TextureInfoTask.tileTextures);
 		}
 
 		/**
@@ -93,11 +97,11 @@ package
 			addChild(view);
 		}
 
-		private function createTerrain0():void
+		private function createTerrain0(w3eData:W3eData, tileTextures:Array):void
 		{
-			addChild(new Bitmap(war3TerrainData.war3TextureInfo.tileTextures[1].bitmapData.clone()));
+			addChild(new Bitmap(tileTextures[1].bitmapData.clone()));
 
-			terrain = new War3Terrain1(war3TerrainData.w3eLoadParseTask.w3eData, war3TerrainData.war3TextureInfo.tileTextures);
+			terrain = new War3Terrain1(w3eData, tileTextures);
 			scene.addChild(terrain);
 		}
 
@@ -111,7 +115,6 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-			war3TerrainData.addEventListener(TaskEvent.COMPLETED, onPrepared);
 			onResize();
 		}
 

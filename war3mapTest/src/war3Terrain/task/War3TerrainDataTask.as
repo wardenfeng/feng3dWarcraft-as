@@ -10,8 +10,8 @@ package war3Terrain.task
 	public class War3TerrainDataTask extends TaskQueue
 	{
 		public var w3eLoadParseTask:W3eLoadParseTask;
-		public var war3SmallMapItem:War3SmallMapTask;
-		public var war3TextureInfo:War3TextureInfoTask;
+		public var war3SmallMapItemTask:War3SmallMapTask;
+		public var war3TextureInfoTask:War3TextureInfoTask;
 
 		public var configUrl:String;
 
@@ -27,18 +27,18 @@ package war3Terrain.task
 			w3eLoadParseTask = new W3eLoadParseTask(configUrl);
 			addItem(w3eLoadParseTask);
 
-			war3SmallMapItem = new War3SmallMapTask(configUrl);
+			war3SmallMapItemTask = new War3SmallMapTask(configUrl);
 
 			w3eLoadParseTask.addEventListener(TaskEvent.COMPLETED, onW3ePrepared);
 
-			war3TextureInfo = new War3TextureInfoTask();
-			addItem(war3TextureInfo);
+			war3TextureInfoTask = new War3TextureInfoTask();
+			addItem(war3TextureInfoTask);
 		}
 
 		private function onW3ePrepared(event:TaskEvent):void
 		{
-			war3TextureInfo.tilesetsIDs = w3eLoadParseTask.w3eData.tilesetsIDs;
-			war3TextureInfo.execute();
+			war3TextureInfoTask.tilesetsIDs = w3eLoadParseTask.w3eData.tilesetsIDs;
+			war3TextureInfoTask.execute();
 		}
 	}
 }
