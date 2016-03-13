@@ -1,5 +1,6 @@
 package me.feng3d.entities
 {
+	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
 	import me.feng3d.war3.map.w3e.W3eTilePoint;
 
@@ -12,7 +13,7 @@ package me.feng3d.entities
 		private static const TILE_SIZE:int = 128;
 
 		private var _w3eData:W3eData;
-		private var _tileTextures:Array;
+		private var _war3BitmapTexture:War3BitmapTexture;
 
 		private var tilepoints:Vector.<W3eTilePoint>
 
@@ -22,12 +23,12 @@ package me.feng3d.entities
 		private var _width:Number;
 		private var _depth:Number;
 
-		public function War3Terrain1(w3eData:W3eData, tileTextures:Array)
+		public function War3Terrain1(w3eData:W3eData, war3BitmapTexture:War3BitmapTexture)
 		{
 			super();
 
 			_w3eData = w3eData;
-			_tileTextures = tileTextures;
+			_war3BitmapTexture = war3BitmapTexture;
 
 			_segmentsW = _w3eData._mapWidth;
 			_segmentsH = _w3eData._mapHeight;
@@ -36,7 +37,7 @@ package me.feng3d.entities
 
 			tilepoints = _w3eData.tilepoints;
 
-//			buildGeometry();
+			buildGeometry();
 		}
 
 		/**
@@ -93,6 +94,7 @@ package me.feng3d.entities
 
 
 
+
 					war3TerrainTile.buttonLeft = bottomLeft;
 					war3TerrainTile.topLeft = topLeft;
 					war3TerrainTile.topRight = topRight;
@@ -101,7 +103,7 @@ package me.feng3d.entities
 					war3TerrainTile.tileX = xi;
 					war3TerrainTile.tileZ = zi;
 
-					war3TerrainTile.tileTextures = _tileTextures;
+//					war3TerrainTile.tileTextures = _tileTextures;
 
 					war3TerrainTile.buildGeometry();
 
