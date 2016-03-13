@@ -36,7 +36,7 @@ package me.feng3d.entities
 
 			tilepoints = _w3eData.tilepoints;
 
-			buildGeometry();
+//			buildGeometry();
 		}
 
 		/**

@@ -15,7 +15,9 @@ package
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
+	import me.feng3d.core.base.Object3D;
 	import me.feng3d.entities.War3Terrain;
+	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
 
@@ -32,7 +34,7 @@ package
 		private var camera:Camera3D;
 		private var view:View3D;
 
-		private var terrain:War3Terrain;
+		private var terrain:Object3D;
 
 //		private var configUrl:String = "assets/war3map/test/war3map.w3e";
 //		private var configUrl:String = "assets/war3map/BootyBay/war3map.w3e";
@@ -95,7 +97,7 @@ package
 		{
 //			addChild(new Bitmap(war3TerrainData.war3TextureInfo.tileTextures[2].bitmapData.clone()));
 
-			terrain = new War3Terrain(war3TerrainData.w3ePreparationItem.w3eData, war3TerrainData.war3TextureInfo.tileTextures);
+			terrain = new War3Terrain1(war3TerrainData.w3ePreparationItem.w3eData, war3TerrainData.war3TextureInfo.tileTextures);
 			scene.addChild(terrain);
 		}
 
@@ -158,7 +160,8 @@ package
 
 			//set the camera height based on the terrain (with smoothing)
 			if (terrain)
-				camera.y += 0.2 * (terrain.getHeightAt(camera.x, camera.z) + 500 - camera.y);
+//				camera.y += 0.2 * (terrain.getHeightAt(camera.x, camera.z) + 500 - camera.y);
+				camera.y += 0.2 * (500 - camera.y);
 
 			view.render();
 		}
