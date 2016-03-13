@@ -2,6 +2,7 @@ package war3Terrain
 {
 	import me.feng.task.TaskEvent;
 	import me.feng.task.type.TaskQueue;
+	import war3Terrain.task.W3eLoadParseTask;
 
 	/**
 	 * war3地面数据准备队列
@@ -9,7 +10,7 @@ package war3Terrain
 	 */
 	public class War3TerrainData extends TaskQueue
 	{
-		public var w3ePreparationItem:W3eTaskItem;
+		public var w3ePreparationItem:W3eLoadParseTask;
 		public var war3SmallMapItem:War3SmallMapTaskItem;
 		public var war3TextureInfo:War3TextureInfo;
 
@@ -24,7 +25,7 @@ package war3Terrain
 		{
 			this.configUrl = configUrl;
 
-			w3ePreparationItem = new W3eTaskItem(configUrl);
+			w3ePreparationItem = new W3eLoadParseTask(configUrl);
 			addItem(w3ePreparationItem);
 
 			war3SmallMapItem = new War3SmallMapTaskItem(configUrl);

@@ -1,4 +1,4 @@
-package war3Terrain
+package war3Terrain.task
 {
 	import flash.utils.ByteArray;
 
@@ -14,10 +14,10 @@ package war3Terrain
 	import me.feng3d.war3.map.w3e.W3eData;
 
 	/**
-	 * W3e数据准备元素
+	 * W3e文件加载解析任务
 	 * @author warden_feng 2014-7-28
 	 */
-	public class W3eTaskItem extends TaskItem
+	public class W3eLoadParseTask extends TaskItem
 	{
 		private var dispatcher:GlobalDispatcher = GlobalDispatcher.instance;
 
@@ -25,11 +25,15 @@ package war3Terrain
 
 		public var w3eData:W3eData;
 
-		public function W3eTaskItem(configUrl:String)
+		public function W3eLoadParseTask(configUrl:String)
 		{
 			this.configUrl = configUrl;
 		}
 
+		/**
+		 * 执行任务
+		 * @param params
+		 */
 		override public function execute(params:* = null):void
 		{
 			var loadData:LoadModuleEventData = new LoadModuleEventData([{url: configUrl + "?version=" + Math.random(), type: BulkLoader.TYPE_BINARY}]);
@@ -48,6 +52,10 @@ package war3Terrain
 			dispatcher.dispatchEvent(new LoadModuleEvent(LoadModuleEvent.LOAD_RESOURCE, loadData));
 		}
 
+		/**
+		 * w3e地图数据解析完成
+		 * @param event
+		 */
 		private function onW3eParseComplete(event:ParserEvent):void
 		{
 			event.currentTarget.removeEventListener(ParserEvent.PARSE_COMPLETE, onW3eParseComplete);

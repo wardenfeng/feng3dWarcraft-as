@@ -1,5 +1,6 @@
 package
 {
+	import flash.display.Bitmap;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
@@ -16,7 +17,6 @@ package
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.base.Object3D;
-	import me.feng3d.entities.War3Terrain;
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
@@ -95,7 +95,7 @@ package
 
 		private function createTerrain0():void
 		{
-//			addChild(new Bitmap(war3TerrainData.war3TextureInfo.tileTextures[2].bitmapData.clone()));
+			addChild(new Bitmap(war3TerrainData.war3TextureInfo.tileTextures[1].bitmapData.clone()));
 
 			terrain = new War3Terrain1(war3TerrainData.w3ePreparationItem.w3eData, war3TerrainData.war3TextureInfo.tileTextures);
 			scene.addChild(terrain);
