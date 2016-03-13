@@ -57,7 +57,7 @@ package war3Terrain.task
 		{
 			var war3TextureItem:War3TextureTask = event.target as War3TextureTask;
 
-			tileTextures[tilesetsIDs.indexOf(war3TextureItem.id)] = war3TextureItem.bitmap;
+			tileTextures[tilesetsIDs.indexOf(war3TextureItem.id)] = war3TextureItem.bitmapData;
 			super.onCompletedItem(event);
 		}
 

@@ -18,6 +18,7 @@
     <classEntry path="me.feng3d.core.buffer.War3Context3DBufferTypeID"/>
     <classEntry path="me.feng3d.configs.WarContext3DBufferIDConfig"/>
     <classEntry path="me.feng3d.test.TestBaseWar3Map"/>
+    <classEntry path="me.feng3d.textures.War3BitmapTexture"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

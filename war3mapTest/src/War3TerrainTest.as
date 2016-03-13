@@ -1,6 +1,7 @@
 package
 {
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
@@ -20,6 +21,8 @@ package
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
+	import me.feng3d.textures.BitmapTexture;
+	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
 
 	import war3Terrain.task.War3TerrainDataTask;
@@ -59,10 +62,13 @@ package
 			Load.init();
 
 
-			readyTerrainData();
+			loadTerrainData();
 		}
 
-		private function readyTerrainData():void
+		/**
+		 * 加载地形数据
+		 */
+		private function loadTerrainData():void
 		{
 			var war3TerrainDataTask:War3TerrainDataTask = new War3TerrainDataTask();
 			war3TerrainDataTask.addEventListener(TaskEvent.COMPLETED, onCompleted);
@@ -70,6 +76,10 @@ package
 			war3TerrainDataTask.execute();
 		}
 
+		/**
+		 * 地形数据加载完成
+		 * @param event
+		 */
 		private function onCompleted(event:TaskEvent):void
 		{
 			var war3TerrainDataTask:War3TerrainDataTask = event.currentTarget as War3TerrainDataTask;
@@ -99,7 +109,10 @@ package
 
 		private function createTerrain0(w3eData:W3eData, tileTextures:Array):void
 		{
-			addChild(new Bitmap(tileTextures[1].bitmapData.clone()));
+
+			var war3BitmapTexture:War3BitmapTexture = new War3BitmapTexture(Vector.<BitmapData>(tileTextures));
+
+			addChild(new Bitmap(war3BitmapTexture.bitmapData));
 
 			terrain = new War3Terrain1(w3eData, tileTextures);
 			scene.addChild(terrain);

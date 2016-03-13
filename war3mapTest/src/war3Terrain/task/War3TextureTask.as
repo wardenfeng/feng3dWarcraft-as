@@ -29,7 +29,7 @@ package war3Terrain.task
 
 		private var content:ByteArray;
 
-		public var bitmap:Bitmap;
+		public var bitmapData:BitmapData;
 
 		public function War3TextureTask()
 		{
@@ -61,16 +61,10 @@ package war3Terrain.task
 
 		private function onBlpParseComplete(event:ParserEvent):void
 		{
-			event.currentTarget.removeEventListener(ParserEvent.PARSE_COMPLETE, onBlpParseComplete);
-
 			var myParser:BlpParser = event.currentTarget as BlpParser;
-			bitmap = myParser.blpData.bitmap;
+			myParser.removeEventListener(ParserEvent.PARSE_COMPLETE, onBlpParseComplete);
 
-			var newSize:int = Math.min(bitmap.bitmapData.width, bitmap.bitmapData.height);
-			var newBmd:BitmapData = new BitmapData(newSize, newSize);
-			newBmd.copyPixels(bitmap.bitmapData, new Rectangle(0, 0, newSize, newSize), new Point());
-
-			bitmap.bitmapData = newBmd;
+			bitmapData = myParser.blpData.bitmap.bitmapData;
 
 			doComplete();
 		}
