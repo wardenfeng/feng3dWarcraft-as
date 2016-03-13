@@ -21,7 +21,7 @@ package
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
 
-	import war3Terrain.War3TerrainData;
+	import war3Terrain.task.War3TerrainDataTask;
 
 
 	[SWF(backgroundColor = "#ffffff", frameRate = "60", quality = "LOW", width = "670", height = "380")]
@@ -40,7 +40,7 @@ package
 //		private var configUrl:String = "assets/war3map/BootyBay/war3map.w3e";
 		private var configUrl:String = "assets/war3map/LostTemple/war3map.w3e";
 
-		private var war3TerrainData:War3TerrainData = new War3TerrainData();
+		private var war3TerrainData:War3TerrainDataTask = new War3TerrainDataTask();
 
 		/**
 		 * Constructor

@@ -1,4 +1,4 @@
-package war3Terrain
+package war3Terrain.task
 {
 	import me.feng.task.TaskItem;
 	
@@ -6,9 +6,9 @@ package war3Terrain
 	 * war3小地图
 	 * @author warden_feng 2014-7-29
 	 */
-	public class War3SmallMapTaskItem extends TaskItem
+	public class War3SmallMapTask extends TaskItem
 	{
-		public function War3SmallMapTaskItem(configUrl:String)
+		public function War3SmallMapTask(configUrl:String)
 		{
 			super();
 		}

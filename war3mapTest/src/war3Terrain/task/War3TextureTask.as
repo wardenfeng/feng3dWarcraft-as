@@ -1,4 +1,4 @@
-package war3Terrain
+package war3Terrain.task
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -22,7 +22,7 @@ package war3Terrain
 	 *
 	 * @author warden_feng 2014-7-22
 	 */
-	public class War3TextureTaskItem extends TaskItem
+	public class War3TextureTask extends TaskItem
 	{
 		private var dispatcher:GlobalDispatcher = GlobalDispatcher.instance;
 
@@ -35,7 +35,7 @@ package war3Terrain
 
 		public var bitmapTexture:BitmapTexture;
 
-		public function War3TextureTaskItem()
+		public function War3TextureTask()
 		{
 			super();
 		}
