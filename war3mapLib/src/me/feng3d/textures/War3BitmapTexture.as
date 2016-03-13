@@ -4,6 +4,8 @@ package me.feng3d.textures
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
+	import me.feng.debug.assert;
+
 	/**
 	 * war3位图纹理
 	 * @author feng 2016-3-13
@@ -26,11 +28,6 @@ package me.feng3d.textures
 		private static const STYLE_LEN:int = 4;
 
 		/**
-		 * tile的UV步长
-		 */
-		private static const TILE_UV_STEP:Number = 1 / TILE_LEN;
-
-		/**
 		 * style的UV步长
 		 */
 		private static const STYLE_UV_STEP:Number = 1 / TILE_LEN / STYLE_LEN;
@@ -47,6 +44,8 @@ package me.feng3d.textures
 			bitmapData = new BitmapData(TILE_LEN * TILE_SIZE, TILE_LEN * TILE_SIZE, true, 0);
 			super(bitmapData, generateMipmaps);
 			this.tileBitmapDatas = tileBitmapDatas;
+
+			assert(test());
 		}
 
 		/**
@@ -73,14 +72,53 @@ package me.feng3d.textures
 		 * 获取uv坐标
 		 * @param tileIndex		tile索引
 		 * @param styleIndex	style索引
-		 * @return				uv坐标
+		 * @return				uv索引			{(ret%(TILE_LEN * STYLE_LEN)/(TILE_LEN * STYLE_LEN)),int(ret/(TILE_LEN * STYLE_LEN))/(TILE_LEN * STYLE_LEN)}
 		 */
-		public function getUV(tileIndex:int, styleIndex:int):Point
+		public function getUVIndex(tileIndex:int, styleIndex:int):int
 		{
-			return new Point( //
-				int(tileIndex % TILE_LEN) * TILE_UV_STEP + int(styleIndex / STYLE_LEN) * STYLE_UV_STEP, //
-				int(tileIndex / TILE_LEN) * TILE_UV_STEP + int(styleIndex % STYLE_LEN) * STYLE_UV_STEP //
-				);
+			return (int(tileIndex / TILE_LEN) * STYLE_LEN + int(styleIndex % STYLE_LEN)) * (TILE_LEN * STYLE_LEN) + //
+				(int(tileIndex % TILE_LEN) * STYLE_LEN + int(styleIndex / STYLE_LEN));
+		}
+
+		/**
+		 * 等价于getUVIndex，用于测试
+		 * @param tileIndex
+		 * @param styleIndex
+		 * @return
+		 */
+		private function getUVIndex1(tileIndex:int, styleIndex:int):int
+		{
+			//
+			var x:int = tileIndex % TILE_LEN;
+			var y:int = int(tileIndex / TILE_LEN);
+			x *= STYLE_LEN;
+			y *= STYLE_LEN;
+
+			//
+			x += int(styleIndex / STYLE_LEN);
+			y += int(styleIndex % STYLE_LEN);
+
+			//
+			var uvIndex:int = x + y * TILE_LEN * STYLE_LEN;
+
+			return uvIndex;
+		}
+
+		/**
+		 * 测试getUVIndex
+		 */
+		private function test():Boolean
+		{
+			for (var i:int = 0; i < TILE_LEN * TILE_LEN; i++)
+			{
+				for (var j:int = 0; j < STYLE_LEN * STYLE_LEN; j++)
+				{
+					if (getUVIndex(i, j) != getUVIndex1(i, j))
+						return false;
+				}
+			}
+
+			return true;
 		}
 	}
 }

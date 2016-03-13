@@ -114,8 +114,8 @@ package
 
 			addChild(new Bitmap(war3BitmapTexture.bitmapData));
 
-			terrain = new War3Terrain1(w3eData, war3BitmapTexture);
-			scene.addChild(terrain);
+//			terrain = new War3Terrain1(w3eData, war3BitmapTexture);
+//			scene.addChild(terrain);
 		}
 
 		/**
