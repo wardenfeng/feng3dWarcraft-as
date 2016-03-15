@@ -18,10 +18,10 @@ package
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.base.Object3D;
+	import me.feng3d.entities.War3Terrain;
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
-	import me.feng3d.textures.BitmapTexture;
 	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
 
@@ -114,8 +114,8 @@ package
 
 			addChild(new Bitmap(war3BitmapTexture.bitmapData));
 
-//			terrain = new War3Terrain1(w3eData, war3BitmapTexture);
-//			scene.addChild(terrain);
+			terrain = new War3Terrain1(w3eData, war3BitmapTexture);
+			scene.addChild(terrain);
 		}
 
 		/**

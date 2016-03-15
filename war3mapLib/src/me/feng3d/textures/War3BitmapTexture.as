@@ -5,6 +5,7 @@ package me.feng3d.textures
 	import flash.geom.Rectangle;
 
 	import me.feng.debug.assert;
+	import me.feng3d.core.base.data.UV;
 
 	/**
 	 * war3位图纹理
@@ -81,6 +82,19 @@ package me.feng3d.textures
 		}
 
 		/**
+		 * 根据UV索引获取UV
+		 * @param uvIndex		UV索引
+		 * @return				UV
+		 */		
+		public function getUVByUVIndex(uvIndex:int):UV
+		{
+			var uv:UV = new UV();
+			uv.u = (uvIndex % (TILE_LEN * STYLE_LEN)) / (TILE_LEN * STYLE_LEN);
+			uv.v = int(uvIndex / (TILE_LEN * STYLE_LEN)) / (TILE_LEN * STYLE_LEN);
+			return uv;
+		}
+
+		/**
 		 * 等价于getUVIndex，用于测试
 		 * @param tileIndex
 		 * @param styleIndex
@@ -122,3 +136,5 @@ package me.feng3d.textures
 		}
 	}
 }
+
+

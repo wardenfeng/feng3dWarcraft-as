@@ -1,5 +1,7 @@
 package me.feng3d.entities
 {
+	import flash.utils.Dictionary;
+
 	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
 	import me.feng3d.war3.map.w3e.W3eTilePoint;
@@ -60,6 +62,11 @@ package me.feng3d.entities
 			var vertices:Vector.<Number> = new Vector.<Number>();
 			var indices:Vector.<uint> = new Vector.<uint>();
 
+			//uv索引数据
+			var uvIndices:Vector.<Number> = new Vector.<Number>();
+			//uv混合权重
+			var uvWeights:Vector.<Number> = new Vector.<Number>();
+
 			var index:int;
 			for (var zi:uint = 0; zi < _segmentsH; ++zi)
 			{
@@ -92,13 +99,17 @@ package me.feng3d.entities
 						index + 2, index + 3, index //
 						);
 
+					makeUVData(uvIndices, uvWeights, topRight.texturetype, topLeft.texturetype, bottomRight.texturetype, bottomLeft.texturetype);
+
+					uvIndices.push( //
+
+						);
 
 
-
-					war3TerrainTile.buttonLeft = bottomLeft;
+					war3TerrainTile.bottomLeft = bottomLeft;
 					war3TerrainTile.topLeft = topLeft;
 					war3TerrainTile.topRight = topRight;
-					war3TerrainTile.buttonRight = bottomRight;
+					war3TerrainTile.bottomRight = bottomRight;
 
 					war3TerrainTile.tileX = xi;
 					war3TerrainTile.tileZ = zi;
@@ -110,6 +121,27 @@ package me.feng3d.entities
 					addChild(war3TerrainTile);
 				}
 			}
+		}
+
+		/**
+		 * 制作uv数据
+		 * @param uvIndices
+		 * @param uvWeights
+		 * @param topRightTexturetype
+		 * @param topLeftTexturetype
+		 * @param bottomRightTexturetype
+		 * @param bottomLeftTexturetype
+		 */
+		private function makeUVData(uvIndices:Vector.<Number>, uvWeights:Vector.<Number>, topRightTexturetype:int, topLeftTexturetype:int, bottomRightTexturetype:int, bottomLeftTexturetype:int):void
+		{
+			var valueDic:Dictionary = new Dictionary();
+			//计算4个顶点对于每个贴图的u值(4*4)
+
+			//计算4个贴图的索引块
+			valueDic[topRightTexturetype] = int(valueDic[topRightTexturetype]) + 1;
+			valueDic[topLeftTexturetype] = int(valueDic[topLeftTexturetype]) + 2;
+			valueDic[bottomRightTexturetype] = int(valueDic[bottomRightTexturetype]) + 4;
+			valueDic[bottomLeftTexturetype] = int(valueDic[bottomLeftTexturetype]) + 8;
 		}
 
 		/**

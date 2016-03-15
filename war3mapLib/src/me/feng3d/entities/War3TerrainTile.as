@@ -6,7 +6,7 @@ package me.feng3d.entities
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
-	
+
 	import me.feng3d.arcane;
 	import me.feng3d.core.base.subgeometry.War3TerrainSubGeometry;
 	import me.feng3d.materials.War3TerrainMaterial;
@@ -28,10 +28,10 @@ package me.feng3d.entities
 		 * 数据缓冲
 		 */
 		private var _subGeometry:War3TerrainSubGeometry;
-		public var buttonLeft:W3eTilePoint;
+		public var bottomLeft:W3eTilePoint;
 		public var topLeft:W3eTilePoint;
 		public var topRight:W3eTilePoint;
-		public var buttonRight:W3eTilePoint;
+		public var bottomRight:W3eTilePoint;
 
 		private var _war3Textureuvs:Vector.<Rectangle>;
 		public var tileX:uint;
@@ -59,29 +59,10 @@ package me.feng3d.entities
 			//计算4个顶点对于每个贴图的u值(4*4)
 
 			//计算4个贴图的索引块
-			if (int(valueDic[buttonLeft.texturetype]) == 0)
-			{
-				valueDic[buttonLeft.texturetype] = 0;
-			}
-			valueDic[buttonLeft.texturetype] += 8;
-
-			if (int(valueDic[topLeft.texturetype]) == 0)
-			{
-				valueDic[topLeft.texturetype] = 0;
-			}
-			valueDic[topLeft.texturetype] += 2;
-
-			if (int(valueDic[topRight.texturetype]) == 0)
-			{
-				valueDic[topRight.texturetype] = 0;
-			}
-			valueDic[topRight.texturetype] += 1;
-
-			if (int(valueDic[buttonRight.texturetype]) == 0)
-			{
-				valueDic[buttonRight.texturetype] = 0;
-			}
-			valueDic[buttonRight.texturetype] += 4;
+			valueDic[topRight.texturetype] = int(valueDic[topRight.texturetype]) + 1;
+			valueDic[topLeft.texturetype] = int(valueDic[topLeft.texturetype]) + 2;
+			valueDic[bottomRight.texturetype] = int(valueDic[bottomRight.texturetype]) + 4;
+			valueDic[bottomLeft.texturetype] = int(valueDic[bottomLeft.texturetype]) + 8;
 
 			var textureIndex:int = 0;
 			var usedTextures:Array = [];
@@ -179,7 +160,7 @@ package me.feng3d.entities
 			var vertices:Vector.<Number> = new Vector.<Number>(12, true);
 			//4个顶点坐标（12个number）
 			vertices[0] = 0; //
-			vertices[1] = buttonLeft.height * s; //
+			vertices[1] = bottomLeft.height * s; //
 			vertices[2] = 0; //
 
 			vertices[3] = 0; //
@@ -191,7 +172,7 @@ package me.feng3d.entities
 			vertices[8] = TILE_SIZE; //
 
 			vertices[9] = TILE_SIZE; //
-			vertices[10] = buttonRight.height * s; //
+			vertices[10] = bottomRight.height * s; //
 			vertices[11] = 0; //
 
 			_subGeometry.numVertices = vertices.length / 3;

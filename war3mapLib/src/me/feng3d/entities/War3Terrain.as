@@ -77,10 +77,10 @@ package me.feng3d.entities
 					war3TerrainTile.x = (xi - _segmentsW * .5) * TILE_SIZE;
 					war3TerrainTile.z = (zi - _segmentsH * .5) * TILE_SIZE;
 
-					war3TerrainTile.buttonLeft = bottomLeft;
+					war3TerrainTile.bottomLeft = bottomLeft;
 					war3TerrainTile.topLeft = topLeft;
 					war3TerrainTile.topRight = topRight;
-					war3TerrainTile.buttonRight = bottomRight;
+					war3TerrainTile.bottomRight = bottomRight;
 
 					war3TerrainTile.tileX = xi;
 					war3TerrainTile.tileZ = zi;
