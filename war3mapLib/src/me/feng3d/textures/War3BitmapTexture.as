@@ -16,7 +16,7 @@ package me.feng3d.textures
 		/**
 		 * LEN*LEN 个tile贴图
 		 */
-		private static const TILE_LEN:int = 4;
+		public static const TILE_LEN:int = 4;
 
 		/**
 		 * tile贴图尺寸
@@ -26,12 +26,7 @@ package me.feng3d.textures
 		/**
 		 * 每个tile贴图有 4*4 个样式
 		 */
-		private static const STYLE_LEN:int = 4;
-
-		/**
-		 * style的UV步长
-		 */
-		private static const STYLE_UV_STEP:Number = 1 / TILE_LEN / STYLE_LEN;
+		public static const STYLE_LEN:int = 4;
 
 		private var _tileBitmapDatas:Vector.<BitmapData>;
 

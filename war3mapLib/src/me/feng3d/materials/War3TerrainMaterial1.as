@@ -16,7 +16,7 @@ package me.feng3d.materials
 			super();
 			bothSides = true;
 			addPass(_screenPass = new War3TerrainPass1());
-//			_screenPass.splats = war3BitmapTexture;
+			_screenPass.war3BitmapTexture = war3BitmapTexture;
 		}
 	}
 }
