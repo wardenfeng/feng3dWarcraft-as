@@ -30,7 +30,11 @@
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/war3mapLib/bin/war3mapLib.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="1" linkType="1" path="feng3dlibs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/fagal/bin/fagal.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/fagalFeng3d/bin/fagalFeng3d.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/feng3d/bin/feng3d.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/mathLib/bin/mathLib.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

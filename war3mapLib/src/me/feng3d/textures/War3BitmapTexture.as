@@ -46,7 +46,7 @@ package me.feng3d.textures
 			super(bitmapData, generateMipmaps);
 			this.tileBitmapDatas = tileBitmapDatas;
 
-			assert(test());
+			test();
 		}
 
 		/**
@@ -85,7 +85,7 @@ package me.feng3d.textures
 		 * 根据UV索引获取UV
 		 * @param uvIndex		UV索引
 		 * @return				UV
-		 */		
+		 */
 		public function getUVByUVIndex(uvIndex:int):UV
 		{
 			var uv:UV = new UV();
@@ -119,20 +119,46 @@ package me.feng3d.textures
 		}
 
 		/**
+		 * 等价于getUVIndex，用于测试
+		 * @param tileIndex
+		 * @param styleIndex
+		 * @return
+		 */
+		private function getUVIndex2(tileIndex:int, styleIndex:int):int
+		{
+			var uvIndex:int = offset((tileIndex % 4) * 4, int(tileIndex / 4) * 4) //tileIndex造成的偏移
+				+ offset(int(styleIndex / 4), styleIndex % 4); //styleIndex造成的偏移
+			return uvIndex;
+		}
+
+		/**
 		 * 测试getUVIndex
 		 */
-		private function test():Boolean
+		private function test():void
 		{
 			for (var i:int = 0; i < TILE_LEN * TILE_LEN; i++)
 			{
 				for (var j:int = 0; j < STYLE_LEN * STYLE_LEN; j++)
 				{
-					if (getUVIndex(i, j) != getUVIndex1(i, j))
-						return false;
+					var UVIndex:int = getUVIndex(i, j);
+					var UVIndex1:int = getUVIndex1(i, j);
+					var UVIndex2:int = getUVIndex2(i, j);
+
+					assert(UVIndex == UVIndex1);
+					assert(UVIndex1 == UVIndex2);
 				}
 			}
+		}
 
-			return true;
+		/**
+		 * 根据偏移量计算偏移索引
+		 * @param xOffset			x方向偏移
+		 * @param zOffset			z方向偏移
+		 * @return
+		 */
+		public function offset(xOffset:int, zOffset:int):int
+		{
+			return xOffset + zOffset * TILE_LEN * STYLE_LEN;
 		}
 	}
 }

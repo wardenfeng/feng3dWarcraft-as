@@ -1,6 +1,6 @@
 package me.feng3d.entities
 {
-	import me.feng3d.containers.ObjectContainer3D;
+	import me.feng3d.containers.Container3D;
 	import me.feng3d.war3.map.w3e.W3eData;
 	import me.feng3d.war3.map.w3e.W3eTilePoint;
 
@@ -8,7 +8,7 @@ package me.feng3d.entities
 	 * war3地形模块
 	 * @author warden_feng 2014-7-21
 	 */
-	public class War3Terrain extends ObjectContainer3D
+	public class War3Terrain extends Container3D
 	{
 		private static const TILE_SIZE:int = 128;
 
@@ -74,8 +74,8 @@ package me.feng3d.entities
 					var bottomRight:W3eTilePoint = tilepoints[xi + 1 + zi * tw];
 
 					//格子坐标
-					war3TerrainTile.x = (xi - _segmentsW * .5) * TILE_SIZE;
-					war3TerrainTile.z = (zi - _segmentsH * .5) * TILE_SIZE;
+					war3TerrainTile.transform3D.x = (xi - _segmentsW * .5) * TILE_SIZE;
+					war3TerrainTile.transform3D.z = (zi - _segmentsH * .5) * TILE_SIZE;
 
 					war3TerrainTile.bottomLeft = bottomLeft;
 					war3TerrainTile.topLeft = topLeft;

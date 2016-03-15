@@ -18,7 +18,6 @@ package
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
 	import me.feng3d.core.base.Object3D;
-	import me.feng3d.entities.War3Terrain;
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
 	import me.feng3d.test.TestBaseWar3Map;
@@ -40,9 +39,10 @@ package
 
 		private var terrain:Object3D;
 
-//		private var configUrl:String = "assets/war3map/test/war3map.w3e";
+		private var configUrl:String = "assets/war3map/test/war3map.w3e";
+
 //		private var configUrl:String = "assets/war3map/BootyBay/war3map.w3e";
-		private var configUrl:String = "assets/war3map/LostTemple/war3map.w3e";
+//		private var configUrl:String = "assets/war3map/LostTemple/war3map.w3e";
 
 		/**
 		 * Constructor
@@ -102,7 +102,7 @@ package
 			view = new View3D(null, camera);
 			scene = view.scene;
 
-			camera.y = 300;
+			camera.transform3D.y = 300;
 
 			addChild(view);
 		}
@@ -145,7 +145,7 @@ package
 
 		protected function onMouseMove(event:MouseEvent):void
 		{
-			view.camera.rotationX = (2 * event.stageY / stage.stageHeight - 1) * 90;
+			view.camera.transform3D.rotationX = (2 * event.stageY / stage.stageHeight - 1) * 90;
 		}
 
 		/**
@@ -157,27 +157,27 @@ package
 
 			if (keyDic[Keyboard.W])
 			{
-				view.camera.x += view.camera.forwardVector.x * positionStep;
-				view.camera.z += view.camera.forwardVector.z * positionStep;
+				view.camera.transform3D.x += view.camera.transform3D.forwardVector.x * positionStep;
+				view.camera.transform3D.z += view.camera.transform3D.forwardVector.z * positionStep;
 			}
 			if (keyDic[Keyboard.S])
 			{
-				view.camera.x -= view.camera.forwardVector.x * positionStep;
-				view.camera.z -= view.camera.forwardVector.z * positionStep;
+				view.camera.transform3D.x -= view.camera.transform3D.forwardVector.x * positionStep;
+				view.camera.transform3D.z -= view.camera.transform3D.forwardVector.z * positionStep;
 			}
 			if (keyDic[Keyboard.A])
 			{
-				view.camera.rotationY--;
+				view.camera.transform3D.rotationY--;
 			}
 			if (keyDic[Keyboard.D])
 			{
-				view.camera.rotationY++;
+				view.camera.transform3D.rotationY++;
 			}
 
 			//set the camera height based on the terrain (with smoothing)
 			if (terrain)
-//				camera.y += 0.2 * (terrain.getHeightAt(camera.x, camera.z) + 500 - camera.y);
-				camera.y += 0.2 * (500 - camera.y);
+//				camera.transform3D.y += 0.2 * (terrain.getHeightAt(camera.transform3D.x, camera.transform3D.z) + 500 - camera.transform3D.y);
+				camera.transform3D.y += 0.2 * (500 - camera.transform3D.y);
 
 			view.render();
 		}

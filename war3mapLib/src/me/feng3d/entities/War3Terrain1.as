@@ -2,6 +2,8 @@ package me.feng3d.entities
 {
 	import flash.utils.Dictionary;
 
+	import me.feng3d.core.base.subgeometry.War3TerrainSubGeometry1;
+	import me.feng3d.materials.War3TerrainMaterial1;
 	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
 	import me.feng3d.war3.map.w3e.W3eTilePoint;
@@ -25,6 +27,11 @@ package me.feng3d.entities
 		private var _width:Number;
 		private var _depth:Number;
 
+		/**
+		 * 数据缓冲
+		 */
+		private var _subGeometry:War3TerrainSubGeometry1;
+
 		public function War3Terrain1(w3eData:W3eData, war3BitmapTexture:War3BitmapTexture)
 		{
 			super();
@@ -40,6 +47,7 @@ package me.feng3d.entities
 			tilepoints = _w3eData.tilepoints;
 
 			buildGeometry();
+			material = new War3TerrainMaterial1(_war3BitmapTexture);
 		}
 
 		/**
@@ -47,6 +55,9 @@ package me.feng3d.entities
 		 */
 		private function buildGeometry():void
 		{
+			_subGeometry = new War3TerrainSubGeometry1();
+			geometry.addSubGeometry(_subGeometry);
+
 			var s:Number = 0.1;
 
 			var x:Number, z:Number;
@@ -100,27 +111,14 @@ package me.feng3d.entities
 						);
 
 					makeUVData(uvIndices, uvWeights, topRight.texturetype, topLeft.texturetype, bottomRight.texturetype, bottomLeft.texturetype);
-
-					uvIndices.push( //
-
-						);
-
-
-					war3TerrainTile.bottomLeft = bottomLeft;
-					war3TerrainTile.topLeft = topLeft;
-					war3TerrainTile.topRight = topRight;
-					war3TerrainTile.bottomRight = bottomRight;
-
-					war3TerrainTile.tileX = xi;
-					war3TerrainTile.tileZ = zi;
-
-//					war3TerrainTile.tileTextures = _tileTextures;
-
-					war3TerrainTile.buildGeometry();
-
-					addChild(war3TerrainTile);
 				}
 			}
+
+			_subGeometry.updateIndexData(indices);
+			_subGeometry.numVertices = vertices.length / 3;
+			_subGeometry.updateVertexPositionData(vertices);
+			_subGeometry.updateUVIndicesData(uvIndices);
+			_subGeometry.updateUVWeightsData(uvWeights);
 		}
 
 		/**
@@ -135,13 +133,55 @@ package me.feng3d.entities
 		private function makeUVData(uvIndices:Vector.<Number>, uvWeights:Vector.<Number>, topRightTexturetype:int, topLeftTexturetype:int, bottomRightTexturetype:int, bottomLeftTexturetype:int):void
 		{
 			var valueDic:Dictionary = new Dictionary();
-			//计算4个顶点对于每个贴图的u值(4*4)
 
 			//计算4个贴图的索引块
 			valueDic[topRightTexturetype] = int(valueDic[topRightTexturetype]) + 1;
 			valueDic[topLeftTexturetype] = int(valueDic[topLeftTexturetype]) + 2;
 			valueDic[bottomRightTexturetype] = int(valueDic[bottomRightTexturetype]) + 4;
 			valueDic[bottomLeftTexturetype] = int(valueDic[bottomLeftTexturetype]) + 8;
+
+			//收集贴图个数
+			var textureArr:Array = [];
+			for (var texturetype:* in valueDic)
+			{
+				textureArr.push({tileIndex: texturetype, styleIndex: valueDic[texturetype]});
+			}
+
+			//uvIndicesStart == uvWeightsStart
+			var uvIndicesStart:int = uvIndices.length;
+			uvIndices.length += 16;
+			var uvWeightsStart:int = uvWeights.length;
+			uvWeights.length += 16;
+			for (var i:int = 0; i < 4; i++)
+			{
+				uvIndices[uvIndicesStart] = 0;
+				uvIndices[uvIndicesStart + 4] = 0;
+				uvIndices[uvIndicesStart + 8] = 0;
+				uvIndices[uvIndicesStart + 12] = 0;
+
+				uvWeights[uvWeightsStart] = 0;
+				uvWeights[uvWeightsStart + 4] = 0;
+				uvWeights[uvWeightsStart + 8] = 0;
+				uvWeights[uvWeightsStart + 12] = 0;
+
+				if (i < textureArr.length)
+				{
+					var uvIndex:int = _war3BitmapTexture.getUVIndex(textureArr[i].tileIndex, textureArr[i].styleIndex);
+
+					//uv索引（一个方形块）
+					uvIndices[uvIndicesStart] = uvIndex + _war3BitmapTexture.offset(0, 0);
+					uvIndices[uvIndicesStart + 4] = uvIndex + _war3BitmapTexture.offset(0, 1);
+					uvIndices[uvIndicesStart + 8] = uvIndex + _war3BitmapTexture.offset(1, 1);
+					uvIndices[uvIndicesStart + 12] = uvIndex + _war3BitmapTexture.offset(1, 0);
+
+					//权重
+					uvWeights[uvWeightsStart] = 1 / textureArr.length;
+					uvWeights[uvWeightsStart + 4] = 1 / textureArr.length;
+					uvWeights[uvWeightsStart + 8] = 1 / textureArr.length;
+					uvWeights[uvWeightsStart + 12] = 1 / textureArr.length;
+				}
+
+			}
 		}
 
 		/**
