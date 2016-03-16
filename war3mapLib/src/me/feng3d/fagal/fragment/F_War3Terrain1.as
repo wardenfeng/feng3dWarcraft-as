@@ -61,7 +61,18 @@ package me.feng3d.fagal.fragment
 				}
 				else
 				{
-					_.add(targetReg,targetReg,tempColor);
+//					_.add(targetReg,targetReg,tempColor);
+
+					_.mov(blendingReg.c(i), tempColor.w);
+
+					//混合操作
+					_.sub(tempColor, tempColor, targetReg); // tempColor(保存的纹理值) = tempColor - targetreg; --------------1
+					_.mul(tempColor, tempColor, blendingReg.c(i)); // tempColor = tempColor * blendtemp; ----------2  (0 <= blendtemp <= 1)
+					_.add(targetReg, targetReg, tempColor); // 添加到默认颜色值上  targetreg = targetreg + tempColor; ------------3
+						//由 1代入2得		tempColor = (tempColor - targetreg) * blendtemp; ----------------4
+						//由 4代入3得		targetreg = targetreg + (tempColor - targetreg) * blendtemp; -------------------5
+						//整理5得			targetreg = targetreg * (1 - blendtemp) + tempColor * blendtemp; (0 <= blendtemp <= 1) -----------------6 
+						//公式6很容易看出是平分公式，由此得 引用1、2、3的渲染代码是为了节约变量与计算次数的平分运算。(至少节约1个变量与一次运算)
 				}
 				isFirst = false;
 			}

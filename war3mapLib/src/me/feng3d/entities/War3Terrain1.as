@@ -204,10 +204,10 @@ package me.feng3d.entities
 					vs[uvIndicesStart + 12] = rct.bottom;
 
 					//权重
-					uvWeights[uvWeightsStart] = 1 / textureArr.length;
-					uvWeights[uvWeightsStart + 4] = 1 / textureArr.length;
-					uvWeights[uvWeightsStart + 8] = 1 / textureArr.length;
-					uvWeights[uvWeightsStart + 12] = 1 / textureArr.length;
+					uvWeights[uvWeightsStart] = 1;
+					uvWeights[uvWeightsStart + 4] = 1;
+					uvWeights[uvWeightsStart + 8] = 1;
+					uvWeights[uvWeightsStart + 12] = 1;
 				}
 
 			}
