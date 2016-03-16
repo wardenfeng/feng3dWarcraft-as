@@ -114,7 +114,7 @@ package
 
 			var war3BitmapTexture:War3BitmapTexture = new War3BitmapTexture(Vector.<BitmapData>(tileTextures));
 
-			addChild(new Bitmap(war3BitmapTexture.bitmapData));
+//			addChild(new Bitmap(war3BitmapTexture.bitmapData));
 
 			terrain = new War3Terrain1(w3eData, war3BitmapTexture);
 			scene.addChild(terrain);

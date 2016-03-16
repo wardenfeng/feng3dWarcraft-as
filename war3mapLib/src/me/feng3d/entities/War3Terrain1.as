@@ -15,7 +15,7 @@ package me.feng3d.entities
 	 */
 	public class War3Terrain1 extends Mesh
 	{
-		private static const TILE_SIZE:int = 128;
+		private static const TILE_SIZE:int = 64;
 
 		private var _w3eData:W3eData;
 		private var _war3BitmapTexture:War3BitmapTexture;
@@ -84,7 +84,7 @@ package me.feng3d.entities
 			//uv混合权重
 			var uvWeights:Vector.<Number> = new Vector.<Number>();
 
-			var number:int = 20;
+			var number:int = 50;
 
 			var zStart:int = _segmentsH / 2 - number;
 			var zEnd:int = _segmentsH / 2 + number;
