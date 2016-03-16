@@ -5,6 +5,7 @@ package me.feng3d.passes
 	import me.feng3d.arcane;
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.core.base.renderable.IRenderable;
+	import me.feng3d.core.buffer.War3Context3DBufferTypeID;
 	import me.feng3d.core.buffer.context3d.FSBuffer;
 	import me.feng3d.core.buffer.context3d.ProgramBuffer;
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
@@ -98,7 +99,7 @@ package me.feng3d.passes
 
 			var warcraftShaderParams:WarcraftShaderParams = shaderParams.getOrCreateComponentByClass(WarcraftShaderParams);
 
-			shaderParams.addSampleFlags(_.war3TerrainTexture_fs, war3BitmapTexture);
+			shaderParams.addSampleFlags(War3Context3DBufferTypeID.WAR3TERRAINTEXTURE_FS, war3BitmapTexture);
 		}
 	}
 }

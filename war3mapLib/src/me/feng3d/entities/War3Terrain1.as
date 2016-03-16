@@ -61,8 +61,6 @@ package me.feng3d.entities
 
 			var s:Number = 0.1;
 
-//			_segmentsH = _segmentsW = 1;
-
 			var x:Number, z:Number;
 			//一排顶点数据
 			var tw:uint = _segmentsW + 1;
@@ -83,14 +81,22 @@ package me.feng3d.entities
 			//uv混合权重
 			var uvWeights:Vector.<Number> = new Vector.<Number>();
 
+			var number:int = 10;
+
+			var zStart:int = _segmentsH / 2 - number;
+			var zEnd:int = _segmentsH / 2 + number;
+
+			var xStart:int = _segmentsW / 2 - number;
+			var xEnd:int =  _segmentsW / 2 + number;
+
 			var index:int;
-			for (var zi:uint = 0; zi < _segmentsH; ++zi)
+			for (var zi:uint = zStart; zi < zEnd; ++zi)
 			{
-				for (var xi:uint = 0; xi < _segmentsW; ++xi)
+				for (var xi:uint = xStart; xi < xEnd; ++xi)
 				{
 					war3TerrainTile = new War3TerrainTile();
 
-					index = (zi * _segmentsW + xi) * 4;
+					index = ((zi-zStart) * (xEnd-xStart) + (xi-xStart)) * 4;
 
 					//计算高度值
 					var bottomLeft:W3eTilePoint = tilepoints[xi + zi * tw];

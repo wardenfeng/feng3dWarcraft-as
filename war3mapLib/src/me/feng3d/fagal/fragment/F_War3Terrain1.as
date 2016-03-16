@@ -4,7 +4,6 @@ package me.feng3d.fagal.fragment
 
 	import me.feng3d.core.register.Register;
 	import me.feng3d.fagal.methods.FagalMethod;
-	import me.feng3d.fagal.params.WarcraftShaderParams;
 	import me.feng3d.fagalRE.FagalRE;
 
 	/**
@@ -44,18 +43,18 @@ package me.feng3d.fagal.fragment
 			_.mov(uvTemp, uVarying);
 			_.mov(blendingReg, uvWeightVarying);
 
+			var isFirst:Boolean = true;
+
 			var i:int;
 			for (i = 0; i < 4; ++i)
 			{
 				_.mov(uvTemp.c(0), uVarying.c(i)); //获取第i个贴图u值
 				_.mov(uvTemp.c(1), vVarying.c(i)); //获取第i个贴图v值
-				//				code += "tex " + uvTemp + ", " + uvTemp + ", fs[" + tindexVarying.c(i) + "] <2d,linear,miplinear,wrap>\n"; // 使用第i个贴图
-				//				code += "tex " + uvTemp + ", " + uvTemp + ", fs" + i + " <2d,linear,miplinear,wrap>\n"; // 使用第i个贴图
 				_.tex(tempColor, uvTemp, texturefs); // 使用混合地形贴图
 
 				_.mul(tempColor,tempColor,blendingReg.c(i));
 
-				if (i == 0)
+				if (isFirst)
 				{
 					//初始化第一个贴图值
 					_.mov(targetReg, tempColor);
@@ -64,6 +63,7 @@ package me.feng3d.fagal.fragment
 				{
 					_.add(targetReg,targetReg,tempColor);
 				}
+				isFirst = false;
 			}
 			_.mov(out, targetReg);
 		}

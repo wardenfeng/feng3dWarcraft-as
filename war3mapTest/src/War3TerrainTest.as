@@ -20,7 +20,6 @@ package
 	import me.feng3d.containers.View3D;
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
-	import me.feng3d.primitives.WireframeGeometry;
 	import me.feng3d.test.TestBaseWar3Map;
 	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
@@ -40,10 +39,10 @@ package
 
 		private var terrain:War3Terrain1;
 
-		private var configUrl:String = "assets/war3map/test/war3map.w3e";
+//		private var configUrl:String = "assets/war3map/test/war3map.w3e";
 
 //		private var configUrl:String = "assets/war3map/BootyBay/war3map.w3e";
-//		private var configUrl:String = "assets/war3map/LostTemple/war3map.w3e";
+		private var configUrl:String = "assets/war3map/LostTemple/war3map.w3e";
 
 		/**
 		 * Constructor
