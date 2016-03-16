@@ -1,5 +1,7 @@
 package
 {
+	import com.junkbyte.console.Cc;
+
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.StageAlign;
@@ -11,6 +13,7 @@ package
 	import flash.utils.Dictionary;
 
 	import me.feng.core.GlobalDispatcher;
+	import me.feng.debug.DebugCommon;
 	import me.feng.load.Load;
 	import me.feng.task.Task;
 	import me.feng.task.TaskEvent;
@@ -55,6 +58,8 @@ package
 
 		public function init():void
 		{
+			DebugCommon.loggerFunc = trace;
+
 			initEngine();
 			initListeners();
 

@@ -21,6 +21,15 @@ package me.feng3d.configs
 			//----------------------------------------------------------
 			["war3TerrainTexture_fs", "war3地形纹理"], //
 			["war3Terrain_vc_vector", "war3地形常量数据"], //
+			["war3TerrainUVIndices_va_4", "war3地形uv索引数据"], //
+			["war3TerrainUVWeights_va_4", "war3地形uv权重数据"], //
+
+			["war3TerrainUV0_v", "war3地形贴图0组uv坐标变量数据"], //
+			["war3TerrainUV1_v", "war3地形贴图1组uv坐标变量数据"], //
+			["war3TerrainUV2_v", "war3地形贴图2组uv坐标变量数据"], //
+			["war3TerrainUV3_v", "war3地形贴图3组uv坐标变量数据"], //
+			["war3TerrainUVWeights_v", "war3地形uv权重变量数据"], //
+
 			];
 	}
 }

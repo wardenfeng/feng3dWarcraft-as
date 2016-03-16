@@ -10,9 +10,9 @@ package me.feng3d.passes
 	import me.feng3d.core.buffer.context3d.VCMatrixBuffer;
 	import me.feng3d.core.buffer.context3d.VCVectorBuffer;
 	import me.feng3d.core.proxy.Stage3DProxy;
-	import me.feng3d.fagal.fragment.F_War3Terrain;
+	import me.feng3d.fagal.fragment.F_War3Terrain1;
 	import me.feng3d.fagal.params.WarcraftShaderParams;
-	import me.feng3d.fagal.vertex.V_War3Terrain;
+	import me.feng3d.fagal.vertex.V_War3Terrain1;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.textures.TextureProxyBase;
@@ -78,7 +78,7 @@ package me.feng3d.passes
 
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:FagalShaderResult = FagalRE.runShader(V_War3Terrain, F_War3Terrain);
+			var result:FagalShaderResult = FagalRE.runShader(V_War3Terrain1, F_War3Terrain1);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);

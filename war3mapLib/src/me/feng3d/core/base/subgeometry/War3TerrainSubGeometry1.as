@@ -17,30 +17,20 @@ package me.feng3d.core.base.subgeometry
 		{
 			super.initBuffers();
 
-			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINU_VA_4, 4);
-			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINV_VA_4, 4);
-		}
-
-		public function get uData():Vector.<Number>
-		{
-			var _uData:Vector.<Number> = getVAData(War3Context3DBufferTypeID.WAR3TERRAINU_VA_4);
-			return _uData;
+			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINUVINDICES_VA_4, 4);
+			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINUVWEIGHTS_VA_4, 4);
 		}
 
 		public function updateUVIndicesData(value:Vector.<Number>):void
 		{
-			setVAData(War3Context3DBufferTypeID.WAR3TERRAINU_VA_4, value);
-		}
-
-		public function get vData():Vector.<Number>
-		{
-			var _vData:Vector.<Number> = getVAData(War3Context3DBufferTypeID.WAR3TERRAINV_VA_4);
-			return _vData;
+			setVAData(War3Context3DBufferTypeID.WAR3TERRAINUVINDICES_VA_4, value);
 		}
 
 		public function updateUVWeightsData(value:Vector.<Number>):void
 		{
-			setVAData(War3Context3DBufferTypeID.WAR3TERRAINV_VA_4, value);
+			setVAData(War3Context3DBufferTypeID.WAR3TERRAINUVWEIGHTS_VA_4, value);
 		}
 	}
 }
+
+
