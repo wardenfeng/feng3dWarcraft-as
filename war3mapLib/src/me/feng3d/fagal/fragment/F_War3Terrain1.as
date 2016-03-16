@@ -45,7 +45,7 @@ package me.feng3d.fagal.fragment
 			_.mov(blendingReg, uvWeightVarying);
 
 			var i:int;
-			for (i = 0; i < 0; ++i)
+			for (i = 0; i < 4; ++i)
 			{
 				_.mov(uvTemp.c(0), uVarying.c(i)); //获取第i个贴图u值
 				_.mov(uvTemp.c(1), vVarying.c(i)); //获取第i个贴图v值
@@ -53,7 +53,7 @@ package me.feng3d.fagal.fragment
 				//				code += "tex " + uvTemp + ", " + uvTemp + ", fs" + i + " <2d,linear,miplinear,wrap>\n"; // 使用第i个贴图
 				_.tex(tempColor, uvTemp, texturefs); // 使用混合地形贴图
 
-//				_.mul(tempColor,tempColor,blendingReg.c(i));
+				_.mul(tempColor,tempColor,blendingReg.c(i));
 
 				if (i == 0)
 				{

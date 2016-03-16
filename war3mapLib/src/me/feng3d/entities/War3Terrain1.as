@@ -61,6 +61,8 @@ package me.feng3d.entities
 
 			var s:Number = 0.1;
 
+//			_segmentsH = _segmentsW = 1;
+
 			var x:Number, z:Number;
 			//一排顶点数据
 			var tw:uint = _segmentsW + 1;
@@ -113,7 +115,7 @@ package me.feng3d.entities
 						index + 2, index + 3, index //
 						);
 
-					makeUVData(us,vs, uvWeights, topRight.texturetype, topLeft.texturetype, bottomRight.texturetype, bottomLeft.texturetype);
+					makeUVData(us, vs, uvWeights, topRight.texturetype, topLeft.texturetype, bottomRight.texturetype, bottomLeft.texturetype);
 				}
 			}
 
@@ -135,7 +137,7 @@ package me.feng3d.entities
 		 * @param bottomRightTexturetype
 		 * @param bottomLeftTexturetype
 		 */
-		private function makeUVData(us:Vector.<Number>,vs:Vector.<Number>, uvWeights:Vector.<Number>, topRightTexturetype:int, topLeftTexturetype:int, bottomRightTexturetype:int, bottomLeftTexturetype:int):void
+		private function makeUVData(us:Vector.<Number>, vs:Vector.<Number>, uvWeights:Vector.<Number>, topRightTexturetype:int, topLeftTexturetype:int, bottomRightTexturetype:int, bottomLeftTexturetype:int):void
 		{
 			var valueDic:Dictionary = new Dictionary();
 
@@ -179,7 +181,7 @@ package me.feng3d.entities
 				{
 					var tileIndex:int = textureArr[i].tileIndex;
 					var styleIndex:int = textureArr[i].styleIndex;
-					var rct:Rectangle = _war3BitmapTexture.getTextureuvs((tileIndex%4)*4+int(styleIndex/4),int(tileIndex/4)*4+(styleIndex%4));
+					var rct:Rectangle = _war3BitmapTexture.getTextureuvs((tileIndex % 4) * 4 + int(styleIndex / 4), int(tileIndex / 4) * 4 + (styleIndex % 4));
 
 					//uv索引（一个方形块）
 					us[uvIndicesStart] = rct.left;
