@@ -1,8 +1,9 @@
 package me.feng3d.entities
 {
+	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 
-	import me.feng3d.core.base.subgeometry.War3TerrainSubGeometry1;
+	import me.feng3d.core.base.subgeometry.War3TerrainSubGeometry;
 	import me.feng3d.materials.War3TerrainMaterial1;
 	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
@@ -30,7 +31,7 @@ package me.feng3d.entities
 		/**
 		 * 数据缓冲
 		 */
-		private var _subGeometry:War3TerrainSubGeometry1;
+		private var _subGeometry:War3TerrainSubGeometry;
 
 		public function War3Terrain1(w3eData:W3eData, war3BitmapTexture:War3BitmapTexture)
 		{
@@ -55,7 +56,7 @@ package me.feng3d.entities
 		 */
 		private function buildGeometry():void
 		{
-			_subGeometry = new War3TerrainSubGeometry1();
+			_subGeometry = new War3TerrainSubGeometry();
 			geometry.addSubGeometry(_subGeometry);
 
 			var s:Number = 0.1;
@@ -73,8 +74,10 @@ package me.feng3d.entities
 			var vertices:Vector.<Number> = new Vector.<Number>();
 			var indices:Vector.<uint> = new Vector.<uint>();
 
-			//uv索引数据
-			var uvIndices:Vector.<Number> = new Vector.<Number>();
+			//贴图u坐标
+			var us:Vector.<Number> = new Vector.<Number>();
+			//贴图v坐标
+			var vs:Vector.<Number> = new Vector.<Number>();
 			//uv混合权重
 			var uvWeights:Vector.<Number> = new Vector.<Number>();
 
@@ -110,15 +113,16 @@ package me.feng3d.entities
 						index + 2, index + 3, index //
 						);
 
-					makeUVData(uvIndices, uvWeights, topRight.texturetype, topLeft.texturetype, bottomRight.texturetype, bottomLeft.texturetype);
+					makeUVData(us,vs, uvWeights, topRight.texturetype, topLeft.texturetype, bottomRight.texturetype, bottomLeft.texturetype);
 				}
 			}
 
 			_subGeometry.updateIndexData(indices);
 			_subGeometry.numVertices = vertices.length / 3;
 			_subGeometry.updateVertexPositionData(vertices);
-			_subGeometry.updateUVIndicesData(uvIndices);
-			_subGeometry.updateUVWeightsData(uvWeights);
+
+			_subGeometry.updateUData(us);
+			_subGeometry.updateVData(vs);
 		}
 
 		/**
@@ -130,7 +134,7 @@ package me.feng3d.entities
 		 * @param bottomRightTexturetype
 		 * @param bottomLeftTexturetype
 		 */
-		private function makeUVData(uvIndices:Vector.<Number>, uvWeights:Vector.<Number>, topRightTexturetype:int, topLeftTexturetype:int, bottomRightTexturetype:int, bottomLeftTexturetype:int):void
+		private function makeUVData(us:Vector.<Number>,vs:Vector.<Number>, uvWeights:Vector.<Number>, topRightTexturetype:int, topLeftTexturetype:int, bottomRightTexturetype:int, bottomLeftTexturetype:int):void
 		{
 			var valueDic:Dictionary = new Dictionary();
 
@@ -148,31 +152,44 @@ package me.feng3d.entities
 			}
 
 			//uvIndicesStart == uvWeightsStart
-			var uvIndicesStart:int = uvIndices.length;
-			uvIndices.length += 16;
+			var uvIndicesStart:int = us.length;
+			us.length += 16;
+			vs.length += 16;
 			var uvWeightsStart:int = uvWeights.length;
 			uvWeights.length += 16;
 			for (var i:int = 0; i < 4; i++)
 			{
-				uvIndices[uvIndicesStart] = 0;
-				uvIndices[uvIndicesStart + 4] = 0;
-				uvIndices[uvIndicesStart + 8] = 0;
-				uvIndices[uvIndicesStart + 12] = 0;
-
-				uvWeights[uvWeightsStart] = 0;
-				uvWeights[uvWeightsStart + 4] = 0;
-				uvWeights[uvWeightsStart + 8] = 0;
-				uvWeights[uvWeightsStart + 12] = 0;
+//				us[uvIndicesStart] = 0;
+//				us[uvIndicesStart + 4] = 0;
+//				us[uvIndicesStart + 8] = 0;
+//				us[uvIndicesStart + 12] = 0;
+//
+//				us[uvIndicesStart] = 0;
+//				us[uvIndicesStart + 4] = 0;
+//				us[uvIndicesStart + 8] = 0;
+//				us[uvIndicesStart + 12] = 0;
+//
+//				uvWeights[uvWeightsStart] = 0;
+//				uvWeights[uvWeightsStart + 4] = 0;
+//				uvWeights[uvWeightsStart + 8] = 0;
+//				uvWeights[uvWeightsStart + 12] = 0;
 
 				if (i < textureArr.length)
 				{
-					var uvIndex:int = _war3BitmapTexture.getUVIndex(textureArr[i].tileIndex, textureArr[i].styleIndex);
+					var tileIndex:int = textureArr[i].tileIndex;
+					var styleIndex:int = textureArr[i].styleIndex;
+					var rct:Rectangle = _war3BitmapTexture.getTextureuvs((tileIndex%4)*4+int(styleIndex/4),int(tileIndex/4)*4+(styleIndex%4));
 
 					//uv索引（一个方形块）
-					uvIndices[uvIndicesStart] = uvIndex + _war3BitmapTexture.offset(0, 0);
-					uvIndices[uvIndicesStart + 4] = uvIndex + _war3BitmapTexture.offset(0, 1);
-					uvIndices[uvIndicesStart + 8] = uvIndex + _war3BitmapTexture.offset(1, 1);
-					uvIndices[uvIndicesStart + 12] = uvIndex + _war3BitmapTexture.offset(1, 0);
+					us[uvIndicesStart] = rct.left;
+					us[uvIndicesStart + 4] = rct.left;
+					us[uvIndicesStart + 8] = rct.right;
+					us[uvIndicesStart + 12] = rct.right;
+
+					vs[uvIndicesStart] = rct.bottom;
+					vs[uvIndicesStart + 4] = rct.top;
+					vs[uvIndicesStart + 8] = rct.top;
+					vs[uvIndicesStart + 12] = rct.bottom;
 
 					//权重
 					uvWeights[uvWeightsStart] = 1 / textureArr.length;

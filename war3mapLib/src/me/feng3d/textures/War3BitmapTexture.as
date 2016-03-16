@@ -155,6 +155,12 @@ package me.feng3d.textures
 		{
 			return xOffset + zOffset * TILE_LEN * STYLE_LEN;
 		}
+
+		public function getTextureuvs(x:int,y:int):Rectangle
+		{
+			var rect:Rectangle = new Rectangle(x/TILE_LEN * STYLE_LEN,y/TILE_LEN * STYLE_LEN,1/TILE_LEN * STYLE_LEN,1/TILE_LEN * STYLE_LEN);
+			return rect;
+		}
 	}
 }
 

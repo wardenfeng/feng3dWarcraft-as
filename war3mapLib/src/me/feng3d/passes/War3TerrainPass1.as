@@ -12,7 +12,7 @@ package me.feng3d.passes
 	import me.feng3d.core.proxy.Stage3DProxy;
 	import me.feng3d.fagal.fragment.F_War3Terrain1;
 	import me.feng3d.fagal.params.WarcraftShaderParams;
-	import me.feng3d.fagal.vertex.V_War3Terrain1;
+	import me.feng3d.fagal.vertex.V_War3Terrain;
 	import me.feng3d.fagalRE.FagalRE;
 	import me.feng3d.fagalRE.FagalShaderResult;
 	import me.feng3d.textures.TextureProxyBase;
@@ -29,7 +29,7 @@ package me.feng3d.passes
 		private var modelViewProjection:Matrix3D = new Matrix3D();
 
 		private var _war3BitmapTexture:War3BitmapTexture;
-		private const war3Terrain_vc_vector:Vector.<Number> = new Vector.<Number>(4);
+//		private const war3Terrain_vc_vector:Vector.<Number> = new Vector.<Number>(4);
 
 		public function War3TerrainPass1()
 		{
@@ -45,9 +45,9 @@ package me.feng3d.passes
 		{
 			_war3BitmapTexture = value;
 
-			war3Terrain_vc_vector[0] = War3BitmapTexture.TILE_LEN * War3BitmapTexture.STYLE_LEN;
-			war3Terrain_vc_vector[1] = 1 / war3Terrain_vc_vector[0];
-			war3Terrain_vc_vector[2] = war3Terrain_vc_vector[3] = 0;
+//			war3Terrain_vc_vector[0] = War3BitmapTexture.TILE_LEN * War3BitmapTexture.STYLE_LEN;
+//			war3Terrain_vc_vector[1] = 1 / war3Terrain_vc_vector[0];
+//			war3Terrain_vc_vector[2] = war3Terrain_vc_vector[3] = 0;
 		}
 
 		override protected function initBuffers():void
@@ -57,7 +57,7 @@ package me.feng3d.passes
 			context3DBufferOwner.mapContext3DBuffer(_.projection_vc_matrix, updateProjectionBuffer);
 			context3DBufferOwner.mapContext3DBuffer(_.war3TerrainTexture_fs, updateTextureBuffer);
 
-			context3DBufferOwner.mapContext3DBuffer(_.war3Terrain_vc_vector, updateCameraPosBuffer);
+//			context3DBufferOwner.mapContext3DBuffer(_.war3Terrain_vc_vector, updateCameraPosBuffer);
 		}
 
 		/** 设置投影矩阵 */
@@ -71,14 +71,14 @@ package me.feng3d.passes
 			textureBuffer.update(war3BitmapTexture);
 		}
 
-		private function updateCameraPosBuffer(vcVectorBuffer:VCVectorBuffer):void
-		{
-			vcVectorBuffer.update(war3Terrain_vc_vector);
-		}
+//		private function updateCameraPosBuffer(vcVectorBuffer:VCVectorBuffer):void
+//		{
+//			vcVectorBuffer.update(war3Terrain_vc_vector);
+//		}
 
 		override arcane function updateProgramBuffer(programBuffer:ProgramBuffer):void
 		{
-			var result:FagalShaderResult = FagalRE.runShader(V_War3Terrain1, F_War3Terrain1);
+			var result:FagalShaderResult = FagalRE.runShader(V_War3Terrain, F_War3Terrain1);
 
 			//上传程序
 			programBuffer.update(result.vertexCode, result.fragmentCode);
