@@ -123,6 +123,7 @@ package me.feng3d.entities
 
 			_subGeometry.updateUData(us);
 			_subGeometry.updateVData(vs);
+			_subGeometry.updateUVWeightsData(uvWeights);
 		}
 
 		/**

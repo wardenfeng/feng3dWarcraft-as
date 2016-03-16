@@ -50,7 +50,7 @@ package me.feng3d.core.buffer
 		/** war3地形贴图2,3组uv坐标变量数据 */
 		public static const WAR3TERRAINUV23_V:String = "war3TerrainUV23_v";
 
-		/** war3地形ub权重变量数据 */
+		/** war3地形uv权重变量数据 */
 		public static const WAR3TERRAINUVWEIGHTS_V:String = "war3TerrainUVWeights_v";
 
 	}

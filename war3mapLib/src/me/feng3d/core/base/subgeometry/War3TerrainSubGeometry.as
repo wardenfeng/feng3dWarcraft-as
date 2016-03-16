@@ -19,6 +19,7 @@ package me.feng3d.core.base.subgeometry
 
 			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINU_VA_4, 4);
 			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINV_VA_4, 4);
+			mapVABuffer(War3Context3DBufferTypeID.WAR3TERRAINUVWEIGHTS_VA_4, 4);
 		}
 
 		public function get uData():Vector.<Number>
@@ -42,5 +43,12 @@ package me.feng3d.core.base.subgeometry
 		{
 			setVAData(War3Context3DBufferTypeID.WAR3TERRAINV_VA_4, value);
 		}
+
+		public function updateUVWeightsData(value:Vector.<Number>):void
+		{
+			setVAData(War3Context3DBufferTypeID.WAR3TERRAINUVWEIGHTS_VA_4, value);
+		}
 	}
 }
+
+

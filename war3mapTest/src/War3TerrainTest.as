@@ -1,7 +1,5 @@
 package
 {
-	import com.junkbyte.console.Cc;
-
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.StageAlign;
@@ -20,9 +18,9 @@ package
 	import me.feng3d.cameras.Camera3D;
 	import me.feng3d.containers.Scene3D;
 	import me.feng3d.containers.View3D;
-	import me.feng3d.core.base.Object3D;
 	import me.feng3d.entities.War3Terrain1;
 	import me.feng3d.entities.War3TerrainTile;
+	import me.feng3d.primitives.WireframeGeometry;
 	import me.feng3d.test.TestBaseWar3Map;
 	import me.feng3d.textures.War3BitmapTexture;
 	import me.feng3d.war3.map.w3e.W3eData;
@@ -40,7 +38,7 @@ package
 		private var camera:Camera3D;
 		private var view:View3D;
 
-		private var terrain:Object3D;
+		private var terrain:War3Terrain1;
 
 		private var configUrl:String = "assets/war3map/test/war3map.w3e";
 
@@ -121,6 +119,11 @@ package
 
 			terrain = new War3Terrain1(w3eData, war3BitmapTexture);
 			scene.addChild(terrain);
+
+			//将需要以线框查看的模型顶点索引以及顶点数据传入即可
+//			var _wireframeTriangle:WireframeGeometry = new WireframeGeometry();
+//			_wireframeTriangle.setDrawGeometry(terrain.geometry);
+//			scene.addChild(_wireframeTriangle);
 		}
 
 		/**
