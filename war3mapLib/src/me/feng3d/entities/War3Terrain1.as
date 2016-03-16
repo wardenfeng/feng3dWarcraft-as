@@ -49,6 +49,9 @@ package me.feng3d.entities
 
 			buildGeometry();
 			material = new War3TerrainMaterial1(_war3BitmapTexture);
+
+			transform3D.x = -_segmentsW * .5 * TILE_SIZE;
+			transform3D.z = - _segmentsH * .5 * TILE_SIZE;
 		}
 
 		/**
@@ -81,7 +84,7 @@ package me.feng3d.entities
 			//uv混合权重
 			var uvWeights:Vector.<Number> = new Vector.<Number>();
 
-			var number:int = 10;
+			var number:int = 20;
 
 			var zStart:int = _segmentsH / 2 - number;
 			var zEnd:int = _segmentsH / 2 + number;
